@@ -3,16 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <title>神秘博士的主页</title>
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-<div style="text-align: center">
-    <h1>神秘博士的主页</h1>
+<div id="app">
+    <el-container style="margin-left: 10%;margin-right: 10%">
+        <el-header style="margin-bottom: 50px;margin-top: 20px">
+            <el-card class="box-card">
+
+                    <div style="text-align: center">
+                        <h1>神秘博士-软件逆向与黑客技术</h1>
+                    </div>
+
+            </el-card>
+
+        </el-header>
+        <el-main>
+
+            <el-carousel indicator-position="outside">
+                <el-carousel-item v-for="item in 3" :key="item">
+
+                    <img style="width: 100%;height: 100%" :src="'./'+item+'.jpeg'">
+
+                </el-carousel-item>
+            </el-carousel>
+
+            <div>
+                <el-card class="box-card">
+<!--                    <div slot="header" class="clearfix">-->
+<!--                        <span>项目</span>-->
+<!--                    </div>-->
+                    <div>
+                        <el-table
+                                :data="tableData"
+                                style="width: 100%">
+                            <el-table-column
+                                    prop="name"
+                                    label="名称">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="time"
+                                    label="更新时间">
+                            </el-table-column>
+                            <el-table-column
+                                    label="操作"
+                                    width="200">
+                                <template slot-scope="scope">
+                                    <el-button @click="xz(scope.row.addr)" type="success">下载</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </el-card>
+            </div>
+            <div style="margin-top: 10px">
+
+                <el-card class="box-card">
+                    神秘博士 QQ489879492 所有程序开源免费禁止出售!
+                </el-card>
+
+            </div>
+
+        </el-main>
+    </el-container>
 </div>
-    <div style="text-align: center">
-        <h2><a href="./CF静步加速.zip">CF静步加速</a></h2>
-        <h2><a href="./CF全图瞬移.zip">CF全图瞬移</a></h2>
-        <h2><a href="./CF双倍高跳.zip">CF双倍高跳</a></h2>
-        <h2><a href="./CF显卡透视%202022年11月21日.zip">CF显卡透视</a></h2>
-    </div>
 </body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+
+            tableData: [{
+                name: 'CF静步加速',
+                time: '2022年11月30日',
+                addr: './CF静步加速.zip'
+            }, {
+                name: 'CF全图瞬移',
+                time: '2022年11月30日',
+                addr: './CF全图瞬移.zip'
+            }, {
+                name: 'CF2倍高跳',
+                time: '2022年11月30日',
+                addr: './CF双倍高跳.zip'
+            }, {
+                name: 'CF显卡透视',
+                time: '2022年11月30日',
+                addr: './CF显卡透视%202022年11月21日.zip'
+            }]
+        },
+        methods: {
+            xz(addr) {
+                console.log(addr);
+
+                location.href = addr;
+            }
+        }
+
+
+    })
+
+</script>
+<style>
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 18px;
+        opacity: 0.75;
+        line-height: 300px;
+        margin: 0;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+</style>
 </html>
